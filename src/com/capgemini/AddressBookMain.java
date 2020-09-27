@@ -28,33 +28,36 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book");
 		Scanner sc = new Scanner(System.in);
-		ArrayList<AddressBookMain> contact = new ArrayList<AddressBookMain>();
-		AddressBookMain contact1 = new AddressBookMain("Ganesh", "Rapeti", "ganeshrapeti@gmail.com",
-				"vizag,Andhra Pradesh", "Anakapalle", "Andhra Pradesh", 531001, "9886784617");
-		AddressBookMain contact2 = new AddressBookMain("Sai", "Rapeti", "sairapeti8@gmail.com", "vizag,Andhra Pradesh",
-				"Anakapalle", "Andhra Pradesh", 531001, "9886784617");
-		contact.add(contact1);
-		contact.add(contact2);
-		System.out.println("The contact details of 1st person is: " + contact1);
-		System.out.println("The contact details of 2nd person is: " + contact2);
-		System.out.println("Enter the first name of the candidate to delete the details: ");
-		String name = sc.nextLine();
-		int flag = 0;
-		for(int i=0;i<contact.size();i++) {
-			if(contact.get(i).FIRST_NAME.equals(name)) {
-				flag++;
-				contact.remove(i);
-				System.out.println("Successfully deleted");
-			}
+		ArrayList<AddressBookMain> book = new ArrayList<AddressBookMain>();
+		System.out.println("Enter the Number of persons you want to add in Address book: ");
+		int number = Integer.parseInt(sc.nextLine());
+		for(int i=0;i<number;i++) {
+			System.out.println("Enter the contact details of person "+(i+1)+": ");
+			System.out.println("Enter the first name:");
+			String firstName = sc.nextLine();
+			System.out.println("Enter the last name:");
+			String lastName = sc.nextLine();
+			System.out.println("Enter the EMail:");
+			String Email = sc.nextLine();
+			System.out.println("Enter the Address:");
+			String Address = sc.nextLine();
+			System.out.println("Enter the City:");
+			String city = sc.nextLine();
+			System.out.println("Enter the State:");
+			String state = sc.nextLine();
+			System.out.println("Enter the zip:");
+			int zip = Integer.parseInt(sc.nextLine());
+
+			System.out.println("Enter the phone number:");
+			String phoneNumber = sc.nextLine();
+			AddressBookMain contact = new AddressBookMain(firstName,lastName,Email,Address,city,state,zip,phoneNumber);
+			book.add(contact);
 		}
 		sc.close();
-		if (flag == 0) {
-			System.out.println("Cannot found the user");
-		} else {
-			System.out.println("The remaining contacts in address book are:");
-			for(int i=0;i<contact.size();i++) {
-				System.out.println("The contact details of "+contact.get(i).FIRST_NAME+" are: "+contact.get(i));
-			}
+		int k = 1;
+		for(AddressBookMain b:book) {
+			System.out.println("The contact details of person "+(k)+" are: "+b);
+			k++;
 		}
 	}
 }
