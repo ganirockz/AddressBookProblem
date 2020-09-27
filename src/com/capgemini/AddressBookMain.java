@@ -37,74 +37,24 @@ public class AddressBookMain {
 		contact.add(contact2);
 		System.out.println("The contact details of 1st person is: " + contact1);
 		System.out.println("The contact details of 2nd person is: " + contact2);
-		System.out.println("Enter the first name of the candidate to edit the details: ");
+		System.out.println("Enter the first name of the candidate to delete the details: ");
 		String name = sc.nextLine();
 		int flag = 0;
-		for (AddressBookMain book : contact) {
-			if (book.FIRST_NAME.equals(name)) {
+		for(int i=0;i<contact.size();i++) {
+			if(contact.get(i).FIRST_NAME.equals(name)) {
 				flag++;
-				System.out.println("Select the field you want to change");
-				System.out.println(
-						"1.First Name\n2.Last Name\n3.EMail\n4.Address\n5.City\n6.State\n7.zip\n8.Phone Number");
-				int option = Integer.parseInt(sc.nextLine());
-				switch (option) {
-				case 1: {
-					System.out.println("Enter the new first name:");
-					String firstName = sc.nextLine();
-					book.FIRST_NAME = firstName;
-					break;
-				}
-				case 2: {
-					System.out.println("Enter the new last name:");
-					String lastName = sc.nextLine();
-					book.LAST_NAME = lastName;
-					break;
-				}
-				case 3: {
-					System.out.println("Enter the new EMail:");
-					String Email = sc.nextLine();
-					book.EMAIL = Email;
-					break;
-				}
-				case 4: {
-					System.out.println("Enter the new Address:");
-					String Address = sc.nextLine();
-					book.ADDRESS = Address;
-					break;
-				}
-				case 5: {
-					System.out.println("Enter the new City:");
-					String city = sc.nextLine();
-					book.CITY = city;
-					break;
-				}
-				case 6: {
-					System.out.println("Enter the new State:");
-					String state = sc.nextLine();
-					book.STATE = state;
-					break;
-				}
-				case 7: {
-					System.out.println("Enter the new zip:");
-					int zip = Integer.parseInt(sc.nextLine());
-					book.ZIP = zip;
-					break;
-				}
-				case 8: {
-					System.out.println("Enter the new phone number:");
-					String phoneNumber = sc.nextLine();
-					book.PHONE_NUMBER = phoneNumber;
-					break;
-				}
-				}
+				contact.remove(i);
+				System.out.println("Successfully deleted");
 			}
 		}
 		sc.close();
 		if (flag == 0) {
 			System.out.println("Cannot found the user");
 		} else {
-			System.out.println("The contact details of 1st person is: " + contact1);
-			System.out.println("The contact details of 2nd person is: " + contact2);
+			System.out.println("The remaining contacts in address book are:");
+			for(int i=0;i<contact.size();i++) {
+				System.out.println("The contact details of "+contact.get(i).FIRST_NAME+" are: "+contact.get(i));
+			}
 		}
 	}
 }
