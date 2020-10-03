@@ -2,12 +2,14 @@ package com.capgemini;
 
 import java.util.*;
 
+import sun.java2d.opengl.WGLSurfaceData.WGLVSyncOffScreenSurfaceData;
+
 public class AddressBookMain {
 	public String FIRST_NAME, LAST_NAME, EMAIL;
 	public String ADDRESS, CITY, STATE;
 	public int ZIP;
 	public String PHONE_NUMBER;
-
+	public static HashMap<String, ArrayList<AddressBookMain>> bookSystem = new HashMap<String, ArrayList<AddressBookMain>>();
 	public AddressBookMain(String FirstName, String LastName, String Email, String Address, String city, String state,
 			int zip, String phoneNo) {
 		FIRST_NAME = FirstName;
@@ -29,7 +31,6 @@ public class AddressBookMain {
 		System.out.println("Welcome to Address Book");
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the number of address books you want to add: ");
-		HashMap<String, ArrayList<AddressBookMain>> bookSystem = new HashMap<String, ArrayList<AddressBookMain>>();
 		int numberOfAddressBooks = Integer.parseInt(sc.nextLine());
 		for (int j = 0; j < numberOfAddressBooks; j++) {
 			String bookName;
@@ -89,10 +90,23 @@ public class AddressBookMain {
 			}
 			bookSystem.put(bookName, book);
 		}
-		sc.close();
-		for (Map.Entry<String, ArrayList<AddressBookMain>> entry : bookSystem.entrySet()) {
-			System.out.println("The details of Address Book " + entry.getKey() + " is: ");
-			System.out.println(entry.getValue());
+		System.out.println("Enter the name of the city you want to search for");
+		String searchCity = sc.nextLine();
+		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:bookSystem.entrySet()) {
+			for(AddressBookMain a:entry.getValue()) {
+				if(a.CITY.equals(searchCity)) {
+					System.out.println(a);
+				}
+			}
+		}
+		System.out.println("Enter the name of the state you want to search for");
+		String searchState = sc.nextLine();
+		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:bookSystem.entrySet()) {
+			for(AddressBookMain a:entry.getValue()) {
+				if(a.STATE.equals(searchState)) {
+					System.out.println(a);
+				}
+			}
 		}
 	}
 }
