@@ -2,7 +2,6 @@ package com.capgemini;
 
 import java.util.*;
 
-import sun.java2d.opengl.WGLSurfaceData.WGLVSyncOffScreenSurfaceData;
 
 public class AddressBookMain {
 	public String FIRST_NAME, LAST_NAME, EMAIL;
@@ -106,6 +105,47 @@ public class AddressBookMain {
 				if(a.STATE.equals(searchState)) {
 					System.out.println(a);
 				}
+			}
+		}
+		sc.close();
+		HashMap<String,ArrayList<AddressBookMain>> cityContacts = new HashMap<>();
+		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:bookSystem.entrySet()) {
+			for(AddressBookMain a:entry.getValue()) {
+				String cityName = a.CITY;
+				for(Map.Entry<String,ArrayList<AddressBookMain>> e:bookSystem.entrySet()) {
+					for(AddressBookMain add:e.getValue()) {
+						if(add.CITY.equalsIgnoreCase(cityName)) {
+							e.getValue().add(add);
+							cityContacts.put(cityName,e.getValue());
+						}
+					}
+				}
+			}
+		}
+		for(Map.Entry<String,ArrayList<AddressBookMain>> e:cityContacts.entrySet()) {
+			System.out.println("The contacts in city "+e.getKey()+" are:");
+			for(AddressBookMain add:e.getValue()) {
+				System.out.println(add);
+			}
+		}
+		HashMap<String,ArrayList<AddressBookMain>> stateContacts = new HashMap<>();
+		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:bookSystem.entrySet()) {
+			for(AddressBookMain a:entry.getValue()) {
+				String stateName = a.STATE;
+				for(Map.Entry<String,ArrayList<AddressBookMain>> e:bookSystem.entrySet()) {
+					for(AddressBookMain add:e.getValue()) {
+						if(add.CITY.equalsIgnoreCase(stateName)) {
+							e.getValue().add(add);
+							stateContacts.put(stateName,e.getValue());
+						}
+					}
+				}
+			}
+		}
+		for(Map.Entry<String,ArrayList<AddressBookMain>> e:stateContacts.entrySet()) {
+			System.out.println("The contacts in state "+e.getKey()+" are:");
+			for(AddressBookMain add:e.getValue()) {
+				System.out.println(add);
 			}
 		}
 	}
