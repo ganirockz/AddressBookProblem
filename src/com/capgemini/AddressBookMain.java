@@ -124,9 +124,12 @@ public class AddressBookMain {
 		}
 		for(Map.Entry<String,ArrayList<AddressBookMain>> e:cityContacts.entrySet()) {
 			System.out.println("The contacts in city "+e.getKey()+" are:");
+			int personsInCity = 0;
 			for(AddressBookMain add:e.getValue()) {
 				System.out.println(add);
+				personsInCity++;
 			}
+			System.out.println(personsInCity+" are in "+e.getKey()+" city");
 		}
 		HashMap<String,ArrayList<AddressBookMain>> stateContacts = new HashMap<>();
 		for(Map.Entry<String,ArrayList<AddressBookMain>> entry:bookSystem.entrySet()) {
@@ -144,9 +147,12 @@ public class AddressBookMain {
 		}
 		for(Map.Entry<String,ArrayList<AddressBookMain>> e:stateContacts.entrySet()) {
 			System.out.println("The contacts in state "+e.getKey()+" are:");
+			int countPersonInState = 0;
 			for(AddressBookMain add:e.getValue()) {
 				System.out.println(add);
+				countPersonInState++;
 			}
+			System.out.println(countPersonInState +" are in state"+e.getKey());
 		}
 	}
 }
